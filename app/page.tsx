@@ -44,6 +44,8 @@ const navItems = [
   ["FAQ", "#faq"],
 ];
 
+const asset = (path: string) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
+
 const principles = [
   { icon: Clock3, number: "01", title: "Zeitnah", text: "Wenn Belastung spürbar wird, sollte Unterstützung nicht erst in Monaten beginnen." },
   { icon: LockKeyhole, number: "02", title: "Diskret", text: "Private psychologische Beratung ohne Kassenverfahren, vertraulich und klar." },
@@ -118,7 +120,7 @@ const pricingData: Record<string, { title: string; meta: string; online: string[
   Angehörige: { title: "Angehörigenberatung", meta: "Analog zur Einzelberatung", online: ["1 Sitzung · 119 €", "3 Sitzungen · 299 €", "6 Sitzungen · 529 €", "10 Sitzungen · 849 €"], personal: ["1 Sitzung · 149 €", "3 Sitzungen · 374 €", "6 Sitzungen · 661 €"] },
 };
 
-const process = [
+const processSteps = [
   ["Termin wählen", "Sie wählen einen freien Termin für das kostenlose Erstgespräch."],
   ["Anliegen einordnen", "Wir klären, worum es geht, welche Sprache passt und welcher Beratungsrahmen sinnvoll ist."],
   ["Format festlegen", "Online per Video oder persönlich nach individueller Absprache in Hamburg."],
@@ -361,7 +363,7 @@ function Header() {
   useMotionValueEvent(scrollY, "change", (value) => setCompact(value > 70));
   return (
     <header className={`site-header ${compact ? "is-compact" : ""}`}>
-      <a href="#start" className="brand" aria-label="Elbmind Startseite"><img src="/images/elbmind-logo-clean-transparent.png" alt="Elbmind" /></a>
+      <a href="#start" className="brand" aria-label="Elbmind Startseite"><img src={asset("/images/elbmind-logo-clean-transparent.png")} alt="Elbmind" /></a>
       <nav className="desktop-nav" aria-label="Hauptnavigation">
         {navItems.map(([label, href]) => <a key={href} href={href}>{label}</a>)}
       </nav>
@@ -504,7 +506,7 @@ function About() {
     <section id="ueber-mich" className="about-section">
       <div className="section-shell about-grid">
         <div className="about-visual-stack">
-          <motion.div {...reveal} className="clarity-frame"><div className="portrait-glow" /><img src="/images/arman-ebadi.png" alt="Arman Ebadi, Psychologe M.Sc." /><div className="portrait-label"><span>Arman Ebadi</span><small>Psychologe M.Sc. · Hamburg</small></div></motion.div>
+          <motion.div {...reveal} className="clarity-frame"><div className="portrait-glow" /><img src={asset("/images/arman-ebadi.png")} alt="Arman Ebadi, Psychologe M.Sc." /><div className="portrait-label"><span>Arman Ebadi</span><small>Psychologe M.Sc. · Hamburg</small></div></motion.div>
           <motion.aside {...reveal} className="about-method-card">
             <div className="about-method-head"><span>Arbeitsweise</span><Network /></div>
             <p>Ruhig, strukturiert und ohne vorschnelle Etiketten.</p>
@@ -526,7 +528,7 @@ function Process() {
   return (
     <section id="ablauf" className="section-shell process-section">
       <SectionTitle index="08" eyebrow="Ablauf" title="Ein klarer Ablauf. Damit der Einstieg leicht bleibt." />
-      <div className="timeline"><motion.div className="timeline-progress" initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 1.6 }} />{process.map(([title, text], index) => <motion.article key={title} {...reveal}><div key="number" className="timeline-number">{String(index + 1).padStart(2, "0")}</div><div key="content"><h3>{title}</h3><p>{text}</p></div><ArrowRight key="arrow" /></motion.article>)}</div>
+      <div className="timeline"><motion.div className="timeline-progress" initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 1.6 }} />{processSteps.map(([title, text], index) => <motion.article key={title} {...reveal}><div key="number" className="timeline-number">{String(index + 1).padStart(2, "0")}</div><div key="content"><h3>{title}</h3><p>{text}</p></div><ArrowRight key="arrow" /></motion.article>)}</div>
     </section>
   );
 }
@@ -576,7 +578,7 @@ function FAQ() {
 
 function Footer() {
   return (
-    <footer className="footer"><div className="section-shell"><div className="footer-cta"><span>Erst verstehen. Dann stabilisieren. Dann handeln.</span><h2>Aus diffusem Druck werden sortierbare Themen.</h2><ArrowButton href="#termine" light>Erstgespräch buchen</ArrowButton></div><div className="footer-grid"><div><img src="/images/elbmind-logo-clean-transparent.png" alt="Elbmind" /><p>Psychologische Beratung<br />Arman Ebadi · Psychologe M.Sc.</p></div><div><strong>Beratung</strong><a href="#angebote">Einzel · Paar · Familie</a><a href="#angebote">Angehörige</a><a href="#angebote">Kultursensibel</a></div><div><strong>Rahmen</strong><span>Online per Video</span><span>Hamburg nach Absprache</span><span>DE · EN · Dari/Farsi</span></div><div><strong>Rechtliches</strong><a href="#">Impressum</a><a href="#">Datenschutz</a><a href="#faq">Krisenhinweis</a></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} Elbmind</span><p>Psychologische Beratung, keine heilkundliche Psychotherapie. Bei akuten Krisen wenden Sie sich bitte an den Rettungsdienst, eine Notaufnahme oder den ärztlichen Bereitschaftsdienst.</p></div></div></footer>
+    <footer className="footer"><div className="section-shell"><div className="footer-cta"><span>Erst verstehen. Dann stabilisieren. Dann handeln.</span><h2>Aus diffusem Druck werden sortierbare Themen.</h2><ArrowButton href="#termine" light>Erstgespräch buchen</ArrowButton></div><div className="footer-grid"><div><img src={asset("/images/elbmind-logo-clean-transparent.png")} alt="Elbmind" /><p>Psychologische Beratung<br />Arman Ebadi · Psychologe M.Sc.</p></div><div><strong>Beratung</strong><a href="#angebote">Einzel · Paar · Familie</a><a href="#angebote">Angehörige</a><a href="#angebote">Kultursensibel</a></div><div><strong>Rahmen</strong><span>Online per Video</span><span>Hamburg nach Absprache</span><span>DE · EN · Dari/Farsi</span></div><div><strong>Rechtliches</strong><a href="#">Impressum</a><a href="#">Datenschutz</a><a href="#faq">Krisenhinweis</a></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} Elbmind</span><p>Psychologische Beratung, keine heilkundliche Psychotherapie. Bei akuten Krisen wenden Sie sich bitte an den Rettungsdienst, eine Notaufnahme oder den ärztlichen Bereitschaftsdienst.</p></div></div></footer>
   );
 }
 
