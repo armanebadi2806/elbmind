@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Psychologische Beratung online | Elbmind",
     description:
-      "Zeitnahe, kultursensible und vertrauliche psychologische Beratung online per Video oder persoenlich nach Absprache in Hamburg.",
+    "Zeitnahe, kultursensible und vertrauliche psychologische Beratung online per Video oder persönlich nach Absprache in Hamburg.",
     type: "website",
     locale: "de_DE"
   }
