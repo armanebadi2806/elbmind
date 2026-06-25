@@ -45,6 +45,7 @@ const navItems = [
 ];
 
 const asset = (path: string) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
+const portraitSrc = asset("/images/arman-ebadi.png?v=20260625");
 
 const principles = [
   { icon: Clock3, number: "01", title: "Zeitnah", text: "Wenn Belastung spürbar wird, sollte Unterstützung nicht erst in Monaten beginnen." },
@@ -506,7 +507,7 @@ function About() {
     <section id="ueber-mich" className="about-section">
       <div className="section-shell about-grid">
         <div className="about-visual-stack">
-          <motion.div {...reveal} className="clarity-frame"><div className="portrait-glow" /><img src={asset("/images/arman-ebadi.png")} alt="Arman Ebadi, Psychologe M.Sc." /><div className="portrait-label"><span>Arman Ebadi</span><small>Psychologe M.Sc. · Hamburg</small></div></motion.div>
+          <motion.div {...reveal} className="clarity-frame"><div className="portrait-glow" /><img src={portraitSrc} alt="Arman Ebadi, Psychologe M.Sc." /><div className="portrait-label"><span>Arman Ebadi</span><small>Psychologe M.Sc. · Hamburg</small></div></motion.div>
           <motion.aside {...reveal} className="about-method-card">
             <div className="about-method-head"><span>Arbeitsweise</span><Network /></div>
             <p>Ruhig, strukturiert und ohne vorschnelle Etiketten.</p>
